@@ -19,6 +19,16 @@ Route::get('/s/{code}', [
     'redirect'
 ])->name('shorturl.redirect');
 
+// login route
+Route::get(
+    '/login',
+    [AuthController::class, 'login']
+)->name('login');
+
+// login submit route
+Route::post('/login-submit', [AuthController::class, 'loginSubmit'])
+    ->name('login.submit');
+
 // super admin routes
 Route::middleware(['auth', 'role:super_admin'])
     ->group(function () {
