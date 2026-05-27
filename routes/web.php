@@ -8,16 +8,18 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ShortUrlRedirectController;
 
+// testing url
 Route::get('/', function () {
-    return view('welcome');
+    return "Most welcome to url shortener app";
 });
 
-
+// Short URL redirection route (publicly accessible)
 Route::get('/s/{code}', [
     ShortUrlRedirectController::class,
     'redirect'
 ])->name('shorturl.redirect');
 
+// super admin routes
 Route::middleware(['auth', 'role:super_admin'])
     ->group(function () {
 
@@ -51,7 +53,7 @@ Route::middleware(['auth', 'role:super_admin'])
     });
 
 
-
+// admin routes
 Route::middleware(['auth', 'role:admin'])
     ->group(function () {
 
@@ -71,6 +73,8 @@ Route::middleware(['auth', 'role:admin'])
         )->name('users.store');
     });
 
+
+// member routes
 Route::middleware(['auth', 'role:member'])
     ->group(function () {
 
@@ -80,6 +84,8 @@ Route::middleware(['auth', 'role:member'])
         )->name('member.dashboard');
     });
 
+
+// member and admin routes for url management
 Route::middleware(['auth', 'role:admin,member'])
     ->group(function () {
 
