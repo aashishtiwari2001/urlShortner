@@ -81,6 +81,9 @@ Copy .env.example and rename it to .env.
 Connect Database:
 Open the .env file, add your database details, and import the SQL file sent in the email.
 
+Generate Security Key:
+php artisan key:generate
+
 Start the Project:
 php artisan serve
 (Now open [http://127.0.0.1:8000/login](http://127.0.0.1:8000) in your browser)
