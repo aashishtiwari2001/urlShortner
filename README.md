@@ -78,8 +78,11 @@ composer install
 Setup Environment File:
 Copy .env.example and rename it to .env.
 
-Connect Database:
-Open the .env file, add your database details, and import the SQL file sent in the email.
+Give the Database name and details:
+php artisan migrate
+
+Call the seeder to create the superadmin:
+php artisan db:seed --class=SuperAdminSeeder
 
 Generate Security Key:
 php artisan key:generate
@@ -87,3 +90,8 @@ php artisan key:generate
 Start the Project:
 php artisan serve
 (Now open [http://127.0.0.1:8000/login](http://127.0.0.1:8000) in your browser)
+
+
+After that use these credencials to login the super admin in the project 
+Email: superadmin@gmail.com
+Password: password@123
