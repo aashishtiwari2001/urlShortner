@@ -49,4 +49,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+    public function shortUrls()
+    {
+        return $this->hasMany(Shorturl::class);
+    }
 }

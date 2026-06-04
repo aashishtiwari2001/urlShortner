@@ -174,7 +174,7 @@
                             <a href="{{ $url->original_url }}"
                                 target="_blank">
 
-                                {{ $url->original_url }}
+                                {{ $url->original_url ?? 'N/A' }}
 
                             </a>
 
@@ -185,7 +185,7 @@
                             <a href="{{ url('/s/' . $url->short_code) }}"
                                 target="_blank">
 
-                                {{ url('/s/' . $url->short_code) }}
+                                {{ url('/s/' . $url->short_code) ?? 'N/A' }}
 
                             </a>
 
@@ -195,7 +195,7 @@
 
                             <span class="badge bg-success">
 
-                                {{ $url->hit_count }}
+                                {{ $url->hit_count ?? 0 }}
 
                             </span>
 
@@ -209,7 +209,7 @@
 
                         <td>
 
-                            {{ $url->created_at->format('d M Y') }}
+                            {{ $url->created_at->format('d M Y') ?? 'N/A' }}
 
                         </td>
 

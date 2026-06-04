@@ -14,7 +14,7 @@
 
                 <h5>Total Users</h5>
 
-                <h2>{{ $totalUsers }}</h2>
+                <h2>{{ $company->users_count ?? 0 }}</h2>
 
             </div>
 
@@ -30,7 +30,7 @@
 
                 <h5>Total URLs</h5>
 
-                <h2>{{ $totalUrls }}</h2>
+                <h2>{{ $company->shortUrls_count ?? 0 }}</h2>
 
             </div>
 
@@ -46,7 +46,7 @@
 
                 <h5>Total Hits</h5>
 
-                <h2>{{ $totalHits }}</h2>
+                <h2>{{ $company->shortUrls_sum_hit_count ?? 0 }}</h2>
 
             </div>
 

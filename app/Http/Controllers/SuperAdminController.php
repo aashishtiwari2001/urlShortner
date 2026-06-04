@@ -11,30 +11,16 @@ class SuperAdminController extends Controller
 {
     public function dashboard()
     {
-        $companies = Company::withCount([
-            'shortUrls',
-            'users',
-        ])->withSum(
-            'shortUrls',
-            'hit_count'
-        )->latest()->get();
-
-        return view(
-            'superadmin.dashboard',
-            compact('companies')
-        );
-    }
-
-
-    public function allUrls()
-    {
-        $urls = Shorturl::with('user')
+        $companies = Company::query()
+            ->withCount('users')
+            ->withCount('shortUrls')
+            ->withSum('shortUrls', 'hit_count')
             ->latest()
             ->get();
 
         return view(
-            'superadmin.urls',
-            compact('urls')
+            'superadmin.dashboard',
+            compact('companies')
         );
     }
 

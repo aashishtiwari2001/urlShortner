@@ -27,22 +27,17 @@ class AuthController extends Controller
 
             $request->session()->regenerate();
 
-            $user = auth()->user();
+            $user = Auth::user();
 
-            if ($user->role == 'super_admin') {
+            $routes = [
+                'super_admin' => 'superadmin.dashboard',
+                'admin'       => 'admin.dashboard',
+                'member'      => 'member.dashboard',
+            ];
 
-                return redirect()->route('superadmin.dashboard');
-            }
-
-            if ($user->role == 'admin') {
-
-                return redirect()->route('admin.dashboard');
-            }
-
-            if ($user->role == 'member') {
-
-                return redirect()->route('member.dashboard');
-            }
+            return redirect()->route(
+                $routes[$user->role] ?? 'login'
+            );
         }
 
         return back()->withErrors([

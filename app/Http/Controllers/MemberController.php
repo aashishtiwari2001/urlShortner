@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Shorturl;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class MemberController extends Controller
 {
@@ -10,7 +13,7 @@ class MemberController extends Controller
     {
         $urls = Shorturl::where(
             'user_id',
-            auth()->id()
+            Auth::id()
         )->latest()->get();
 
         $totalUrls = $urls->count();

@@ -6,7 +6,7 @@ use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CompanyController;
-use App\Http\Controllers\ShortUrlRedirectController;
+use App\Http\Controllers\ShortUrlController;
 
 // testing url
 Route::get('/', function () {
@@ -15,7 +15,7 @@ Route::get('/', function () {
 
 // Short URL redirection route (publicly accessible)
 Route::get('/s/{code}', [
-    ShortUrlRedirectController::class,
+    ShortUrlController::class,
     'redirect'
 ])->name('shorturl.redirect');
 
@@ -58,7 +58,7 @@ Route::middleware(['auth', 'role:super_admin'])
 
         Route::get(
             '/superadmin/urls',
-            [SuperAdminController::class, 'allUrls']
+            [ShortUrlController::class, 'allUrls']
         )->name('superadmin.urls');
     });
 
@@ -101,15 +101,14 @@ Route::middleware(['auth', 'role:admin,member'])
 
         Route::get(
             '/urls/create',
-            [AdminController::class, 'createUrl']
+            [ShortUrlController::class, 'createUrl']
         )->name('urls.create');
 
         Route::post(
             '/urls/store',
-            [AdminController::class, 'storeUrl']
+            [ShortUrlController::class, 'storeUrl']
         )->name('urls.store');
     });
-
 
 // Logout Route
 Route::post('/logout', [AuthController::class, 'logout'])
